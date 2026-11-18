@@ -1,17 +1,23 @@
-/* Segnale: esempio completo della consegna su Home e Programma. */
-
-/* Valori condivisi: le regole interessate li richiamano con var(). */
+/* Colori della palette e font del festival */
 :root {
-  --colore-primario: #234c78;
-  --colore-primario-scuro: #163454;
-  --colore-sfondo: #f5f2e9;
-  --colore-testo: #202923;
-  --font-testo: Arial, Helvetica, sans-serif;
-  --font-titoli: Georgia, "Times New Roman", serif;
+  --colore-primario: #08415C;
+  --colore-primario-scuro: #08415C;
+  --colore-accento: #CC2936;
+  --colore-secondario: #6B818C;
+  --colore-caldo: #F1BF98;
+  --colore-sfondo: #EEE5E9;
+  --colore-testo: #08415C;
+
+  --font-testo: "Nunito Sans", sans-serif;
+  --font-titoli: "Nanum Myeongjo", serif;
 }
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -31,8 +37,11 @@ a:hover {
   text-decoration: underline;
 }
 
-a:focus {
-  outline: 3px solid var(--colore-testo);
+a:focus,
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--colore-accento);
+  outline-offset: 3px;
 }
 
 .container {
@@ -41,16 +50,28 @@ a:focus {
   margin: 0 auto;
 }
 
+/* Intestazione sticky */
 .site-header {
-  padding: 1.25rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 0.75rem 0;
   border-bottom: 4px solid var(--colore-primario);
+  background: var(--colore-sfondo);
+}
+
+.site-header .container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .brand {
   display: inline-block;
-  color: var(--colore-testo);
+  color: var(--colore-primario);
+  font-family: var(--font-titoli);
   font-size: 1.75rem;
-  font-weight: bold;
+  font-weight: 700;
   line-height: 1.2;
   text-decoration: none;
 }
@@ -58,36 +79,30 @@ a:focus {
 .brand span {
   display: block;
   margin-top: 0.25rem;
+  font-family: var(--font-testo);
   font-size: 0.875rem;
-  font-weight: normal;
+  font-weight: 400;
 }
 
-nav {
-  margin-top: 1rem;
+.site-header nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-nav a {
+.site-header nav a {
   display: inline-block;
-  margin-right: 1rem;
+  width: fit-content;
   padding: 0.25rem 0;
 }
 
-
-.intro {
-  padding: 3rem 0 1rem;
-}
-
-.eyebrow,
-.event-meta {
-  color: #46564b;
-  font-size: 0.875rem;
-  font-weight: bold;
-}
-
+/* Titoli */
 h1,
 h2,
 h3 {
+  color: var(--colore-primario);
   font-family: var(--font-titoli);
+  font-weight: 700;
   line-height: 1.2;
 }
 
@@ -106,6 +121,17 @@ h3 {
   font-size: 1.375rem;
 }
 
+.intro {
+  padding: 3rem 0 1rem;
+}
+
+.eyebrow,
+.event-meta {
+  color: var(--colore-accento);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
 .lead {
   max-width: 48ch;
   font-size: 1.25rem;
@@ -115,21 +141,24 @@ h3 {
   max-width: 65ch;
 }
 
+/* Pulsante principale */
 .button-link {
   display: inline-block;
   margin-top: 1rem;
   padding: 0.75rem 1.25rem;
   border-radius: 0.5rem;
-  background: var(--colore-primario);
-  color: #ffffff;
-  font-weight: bold;
+  background: var(--colore-accento);
+  color: var(--colore-sfondo);
+  font-weight: 700;
   text-decoration: none;
 }
 
 .button-link:hover {
-  background: var(--colore-primario-scuro);
+  background: var(--colore-primario);
+  color: var(--colore-sfondo);
 }
 
+/* Sezioni e immagini */
 .content-section {
   margin: 2rem 0 3rem;
 }
@@ -151,7 +180,7 @@ h3 {
   margin-bottom: 0.5rem;
 }
 
-/* Disposizione di base: una colonna. */
+/* Programma */
 .event-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -160,9 +189,9 @@ h3 {
 
 .event-card {
   overflow: hidden;
-  border: 1px solid #b7c0b7;
+  border: 1px solid var(--colore-secondario);
   border-radius: 0.75rem;
-  background: #ffffff;
+  background: var(--colore-sfondo);
 }
 
 .event-card img {
@@ -177,44 +206,36 @@ h3 {
 
 .event-place {
   margin-bottom: 0;
-  color: #46564b;
+  color: var(--colore-primario);
   font-size: 0.875rem;
 }
 
+/* Piè di pagina */
 .site-footer {
   padding: 1.25rem 0;
-  border-top: 1px solid #b7c0b7;
-  color: #46564b;
+  border-top: 1px solid var(--colore-secondario);
+  color: var(--colore-primario);
   font-size: 0.875rem;
 }
 
+/* Collegamento per saltare al contenuto */
 .skip-link {
   position: absolute;
   top: -6rem;
   left: 1rem;
+  z-index: 20;
   padding: 0.75rem 1rem;
-  background: #ffffff;
-  color: var(--colore-testo);
+  background: var(--colore-caldo);
+  color: var(--colore-primario);
 }
 
 .skip-link:focus {
   top: 1rem;
 }
 
-/* Da 600 px: due colonne. */
-@media (min-width: 600px) {
-  .event-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Da 1024 px: tre colonne. Questa regola segue quella da 600 px. */
-@media (min-width: 1024px) {
-  .event-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
+/* Galleria */
 .venue-swiper {
+  position: relative;
   overflow: hidden;
 }
 
@@ -222,18 +243,18 @@ h3 {
   box-sizing: border-box;
   margin: 0;
   padding: 1.5rem;
-  background: #ffffff;
-  border-radius: 12px;
   overflow: hidden;
+  border-radius: 0.75rem;
+  background: var(--colore-caldo);
 }
 
 .venue-slide img {
   display: block;
   width: 100%;
-  height: auto;
   max-height: 65vh;
+  height: auto;
+  border-radius: 0.75rem;
   object-fit: cover;
-   border-radius: 12px;
 }
 
 .venue-slide figcaption {
@@ -244,33 +265,61 @@ h3 {
   margin: 0 0 0.5rem;
 }
 
+/* Comandi della galleria */
 .gallery-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  min-height: 3rem;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  margin: 0;
+  pointer-events: none;
 }
 
 .gallery-controls .swiper-button-prev,
 .gallery-controls .swiper-button-next {
-  position: static;
+  position: absolute;
+  top: 50%;
   width: 2.75rem;
   height: 2.75rem;
   margin: 0;
-  color: inherit;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 50%;
+  background: var(--colore-sfondo);
+  color: var(--colore-primario);
+  pointer-events: auto;
+}
+
+.gallery-controls .swiper-button-prev {
+  left: 0.5rem;
+}
+
+.gallery-controls .swiper-button-next {
+  right: 0.5rem;
 }
 
 .gallery-controls .swiper-button-prev::after,
 .gallery-controls .swiper-button-next::after {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.gallery-controls .swiper-button-prev:hover,
+.gallery-controls .swiper-button-next:hover {
+  background: var(--colore-accento);
+  color: var(--colore-sfondo);
 }
 
 .gallery-controls .swiper-pagination {
-  position: static;
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  left: 50%;
   width: auto;
+  transform: translateX(-50%);
+  color: var(--colore-primario);
+  pointer-events: none;
 }
 
+/* Mappa */
 .map-frame {
   width: 100%;
   overflow: hidden;
@@ -293,14 +342,46 @@ h3 {
   line-height: 1.6;
 }
 
-.swiper-button-prev:focus-visible,
-.swiper-button-next:focus-visible,
-a:focus-visible {
-  outline: 3px solid currentColor;
-  outline-offset: 3px;
+/* Da 600 px: menu in riga e programma a due colonne */
+@media (min-width: 600px) {
+  .site-header .container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .site-header nav {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .site-header nav a {
+    width: auto;
+  }
+
+  .event-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-@media (max-width: 600px) {
+/* Da 1024 px: programma a tre colonne */
+@media (min-width: 1024px) {
+  .event-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Spazi più compatti sui telefoni */
+@media (max-width: 599px) {
+  .site-header {
+    padding: 0.5rem 0;
+  }
+
+  .site-header nav {
+    gap: 0;
+  }
+
   .map-frame iframe {
     height: 22rem;
   }
@@ -308,112 +389,4 @@ a:focus-visible {
   .venue-slide {
     padding: 1rem;
   }
-}
-.venue-swiper {
-  position: relative;
-}
-
-.gallery-controls {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: block;
-  min-height: 0;
-  margin: 0;
-  pointer-events: none;
-}
-
-.gallery-controls .swiper-button-prev,
-.gallery-controls .swiper-button-next {
-  position: absolute;
-  top: 50%;
-  width: 2.75rem;
-  height: 2.75rem;
-  margin: 0;
-  transform: translateY(-50%);
-  border: 1px solid transparent;
-  border-radius: 50%;
-  background: rgb(255 255 255 / 75%);
-  color: #245c4b;
-  pointer-events: auto;
-}
-
-.gallery-controls .swiper-button-prev {
-  left: 0.5rem;
-}
-
-.gallery-controls .swiper-button-next {
-  right: 0.5rem;
-}
-
-.gallery-controls .swiper-button-prev::after,
-.gallery-controls .swiper-button-next::after {
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.gallery-controls .swiper-button-prev:hover,
-.gallery-controls .swiper-button-next:hover {
-  border-color: #245c4b;
-}
-
-.gallery-controls .swiper-button-prev:focus-visible,
-.gallery-controls .swiper-button-next:focus-visible {
-  border-color: #245c4b;
-  outline: 2px solid #245c4b;
-  outline-offset: 2px;
-}
-
-.gallery-controls .swiper-pagination {
-  position: absolute;
-  top: calc(100% + 0.75rem);
-  left: 50%;
-  width: auto;
-  transform: translateX(-50%);
-  pointer-events: none;
-}
-.gallery-controls .swiper-button-prev,
-.gallery-controls .swiper-button-next {
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
-.gallery-controls .swiper-button-prev:hover,
-.gallery-controls .swiper-button-next:hover {
-  border: 0;
-  background: transparent;
-}
-.gallery-controls .swiper-button-prev,
-.gallery-controls .swiper-button-next {
-  color: #202923;
-  transition: color 0.2s;
-}
-
-.gallery-controls .swiper-button-prev:hover,
-.gallery-controls .swiper-button-next:hover {
-  color: #fff;
-}
-.gallery-controls .swiper-button-prev,
-.gallery-controls .swiper-button-next {
-  width: 2.75rem;
-  height: 2.75rem;
-  border: 0;
-  border-radius: 50%;
-  background: rgb(255 255 255 / 75%);
-  color: #245c4b;
-  transition: background-color 0.2s, color 0.2s;
-}
-
-.gallery-controls .swiper-button-prev:hover,
-.gallery-controls .swiper-button-next:hover {
-  background: rgb(0 0 0 / 45%);
-  color: #fff;
-}
-
-.gallery-controls .swiper-button-prev::after,
-.gallery-controls .swiper-button-next::after {
-  font-size: 1.2rem;
-  font-weight: 700;
 }
